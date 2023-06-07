@@ -5,18 +5,28 @@ document.body.innerHTML = `
   <!DOCTYPE html>
   <html>
   <head>
-    <title>Trink-Würfelspiel</title>
+    <title>Würfelspiel</title>
     <style>
       body {
         text-align: center;
         font-family: Arial, sans-serif;
       }
+      #cocktailImages {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      #cocktailImages img {
+        width: 70px;
+      }
     </style>
   </head>
   <body>
+  <img src="https://www.ibs-ol.de/files/projektordner/static/logo.png" />
     <h1>IBS-Trinkspiel</h1>
     <button id="rollButton">Würfeln</button>
-    <p id="result"></p>
+    <div id="cocktailImages"></div>
 
     <script src="index.js"></script>
   </body>
@@ -25,22 +35,18 @@ document.body.innerHTML = `
 
 // Funktion zum Würfeln
 function rollDice() {
-  var playerRoll = Math.floor(Math.random() * 6) + 1;
-  var computerRoll = Math.floor(Math.random() * 6) + 1;
+  document.getElementById("cocktailImages").innerHTML = "";
+  var roll = Math.floor(Math.random() * 6) + 1;
 
-  var result = "Du hast eine " + playerRoll + " gewürfelt.<br>";
-  result += "Der Computer hat eine " + computerRoll + " gewürfelt.<br><br>";
+  for (let index = 0; index < roll; index++) {
+    var img = document.createElement("img");
+    img.src =
+      "https://st2.depositphotos.com/2197868/7830/v/950/depositphotos_78306752-stock-illustration-shot-glass-hand-drawn.jpg";
 
-  if (playerRoll > computerRoll) {
-    result += "Du gewinnst diese Runde!";
-  } else if (computerRoll > playerRoll) {
-    result += "Der Computer gewinnt diese Runde!";
-  } else {
-    result += "Unentschieden!";
+    document.getElementById("cocktailImages").appendChild(img);
   }
-
-  document.getElementById("result").innerHTML = result;
 }
 
 // Ereignislistener für den Klick auf den Würfeln-Button
 document.getElementById("rollButton").addEventListener("click", rollDice);
+
